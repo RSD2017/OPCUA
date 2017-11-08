@@ -1,1 +1,78 @@
-/var/www/html/index.html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" /><title>RSD2017</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+		<script>
+			$(document).ready(function(){
+				(function worker() {
+					$.getJSON( "http://localhost:8080/", function( data ) {
+					  var items = [];
+					  var output = "";
+					  var i = 0;
+					  $(".wrapper").html("");
+					  $.each( data, function( key, val ) {
+						output = "<div class='panel panel-default'><div class='panel-heading'>"  + key + "</div><div class='panel-body'><table class='table'><thead class='thead-dark'><tr><th scope='col'>Key</th><th scope='col'>Value</th></tr></thead><tbody>";
+						$.each(val, function( key1,val1 ){
+							$.each(val1, function( key2,val2 ){
+								output += "<tr><td>" + key2 + "</td><td>" + val2 + "</td></tr>"; 
+							});
+						});
+						output += "</table></div></div></div>";
+						$(".wrapper").append(output);
+					  });
+			//		  setTimeout(worker, 1000);
+					});
+				})();
+			});
+		</script>
+		<style>
+			.panel-default {
+				page-break-inside: avoid;
+			}
+			.wrapper {
+			   /* Prevent vertical gaps */
+			   line-height: 0;
+			   margin: 10px; 
+			   -webkit-column-count: 4;
+			   -webkit-column-gap:   0px;
+			   -moz-column-count:    4;
+			   -moz-column-gap:      0px;
+			   column-count:         4;
+			   column-gap:           0px;
+			}
+			
+			.wrapper .panel {
+			  /* Just in case there are inline attributes */
+			  width: 100% !important;
+			  height: auto !important;
+			}
+			
+			body {
+			  margin: 0;
+			  padding: 0;
+			}
+						
+		</style>
+	</head>
+	<body>
+<div class="wrapper">
+</div>
+ 		<div class="row">
+ 			<div class="col-sm-4">
+				<div id="left1" class="panel panel-default">
+				</div>
+			</div>
+ 			<div class="col-sm-4">
+				<div id="mid1" class="panel panel-default">
+ 				</div>
+			</div>
+			<div class="col-sm-4">
+				<div id="right1" class="panel panel-default">
+				</div>
+			</div> 
+		</div>
+	</body>
+</html>
