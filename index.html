@@ -8,7 +8,7 @@
 		<script>
 			$(document).ready(function(){
 				(function worker() {
-					$.getJSON( "http://localhost:8080/", function( data ) {
+					$.getJSON( "http://192.168.1.23:8080/", function( data ) {
 					  var items = [];
 					  var output = "";
 					  var i = 0;
@@ -23,7 +23,7 @@
 						output += "</table></div></div></div>";
 						$(".wrapper").append(output);
 					  });
-			//		  setTimeout(worker, 1000);
+					  setTimeout(worker, 1000);
 					});
 				})();
 			});
